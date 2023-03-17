@@ -1,0 +1,53 @@
+﻿<form id="frmDatosPersonales">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    Datos Personales
+                </div>
+                <div class="card-body">
+                    <div class="form-group" id="frmRut">
+                        <label for="Rut">Rut&nbsp;</label>
+                        <input type="text" class="form-control" id="Rut" aria-describedby="Rut" readonly value=@ViewBag.Rut>
+                        <div class="invalid-feedback" id="msjRut"></div>
+                    </div>
+                    <div class="form-group" id="frmNombre">
+                        <label for="Nombre">Nombre&nbsp;</label>
+                        <input type="text" class="form-control" id="Nombre" aria-describedby="Nombre" value="@ViewBag.Nombre" readonly>
+                        <div class="invalid-feedback" id="msjNombre"></div>
+                    </div>
+                    <div class="form-group" id="frmTelefono">
+                        <label for="Telefono">Nro. de Teléfono&nbsp;</label>
+                        <input type="number" class="form-control" id="Telefono" name="Telefono" aria-describedby="Telefono" value="@ViewBag.Telefono">
+                        <div class="invalid-feedback" id="msjTelefono"></div>
+                    </div>
+                    <div class="form-group" id="frmEmail">
+                        <label for="Email">Email&nbsp;</label>
+                        <input type="email" class="form-control" id="Email" name="Email" aria-describedby="Email" value="@ViewBag.Email">
+                        <div class="invalid-feedback" id="msjEmail"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger", id = "validationSummary" })
+
+                </div>
+                <div class="card-footer">
+                    <div class="float-end">
+                        <a id="btnGuardar" name="btnGuardar" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="bottom" title="Continuar"><i class="fas fa-chevron-circle-right"></i>&nbsp;Guardar</a>
+                    </div>
+                </div>
+                <!-- Hidden Fields -->
+                <input type="hidden" id="IdUsuario" name="IdUsuario" value="@ViewBag.IdUsuario" />
+                @Html.AntiForgeryToken();
+            </div>
+        </div>
+    </div>
+</form>
+<script src="~/Scripts/jquery-3.5.1.js"></script>
+    <script src="~/Scripts/umd/popper.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Assets/DataTables/datatables.js"></script>
+    <script src="~/Assets/Datetimepicker/js/moment.min.js"></script>
+    <script src="~/Assets/Datetimepicker/js/daterangepicker.js"></script>
+    <script src="~/Scripts/sweetalert2.all.min.js"></script>
+<script src="~/Scripts/page/denunciaDatosPersonales.js"></script>

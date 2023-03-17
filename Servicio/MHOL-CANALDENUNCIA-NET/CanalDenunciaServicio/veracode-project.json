@@ -1,0 +1,9 @@
+﻿{
+  "projectVersion": "1.0.0",
+  "uploadAndScan": {
+    "appName": "Canal Denuncia",
+    "fileFolderPath": [
+      ".veracode/build"
+    ]
+  }
+}

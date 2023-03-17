@@ -1,0 +1,6 @@
+namespace CanalDenunciaServicio.Areas.HelpPage.ModelDescriptions
+{
+    public class DictionaryModelDescription : KeyValuePairModelDescription
+    {
+    }
+}

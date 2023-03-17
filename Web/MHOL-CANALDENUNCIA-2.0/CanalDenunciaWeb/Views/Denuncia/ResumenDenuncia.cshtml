@@ -1,0 +1,136 @@
+﻿@model CanalDenunciaWeb.Models.Denuncia
+
+@{
+    Layout = null;
+}
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/Custom.css" rel="stylesheet" />
+
+<style>
+    body {
+        background: white;
+        font-size: 12pt;
+    }
+
+    #menu {
+        display: none;
+    }
+
+    #wrapper,
+    #content {
+        width: auto;
+        margin: 0 5%;
+        padding: 0;
+        border: 0;
+        float: none !important;
+        color: black;
+        background: transparent none;
+    }
+
+    div#content {
+        margin-left: 10%;
+        padding-top: 1em;
+        border-top: 1px solid #930;
+    }
+
+    div#mast {
+        margin-bottom: -8px;
+    }
+
+        div#mast img {
+            vertical-align: bottom;
+        }
+
+    a:link,
+    a:visited {
+        color: #520;
+        background: transparent;
+        font-weight: bold;
+        text-decoration: underline;
+    }
+
+    #content a:link:after,
+    #content a:visited:after {
+        content: " (" attr(href) ") ";
+        font-size: 90%;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                Información de la Denuncia
+            </div>
+            <div class="card-body">
+                <div class="form-row">
+                    <div class="form-group col-md-3 col-sm-12">
+                        <label>Identificador Denuncia</label>
+                        <p><strong>@Model.Identificador</strong></p>
+                    </div>
+                    <div class="form-group col-md-3 col-sm-12">
+                        <label>Fecha Inicio Ocurrencia</label>
+                        <p><strong>@Model.detalles.FechaInicio</strong></p>
+                    </div>
+                    <div class="form-group col-md-3 col-sm-12">
+                        <label>Fecha Fin Ocurrencia</label>
+                        <p><strong>@Model.detalles.FechaFin</strong></p>
+                    </div>
+                    <div class="form-group col-md-3 col-sm-12">
+                        <label>Observación</label>
+                        <p><strong>@Model.detalles.Comentario</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                Involucrados
+            </div>
+            <div class="card-body">
+                <table id="tblResultado" class="table table-bordered table-condensed table-hover tabla_condensada">
+                    <thead>
+                        <tr>
+                            <th style="width:200px; text-align:center;">Nombre</th>
+                            <th style="width:150px; text-align:center;">Sede</th>
+                            <th style="text-align:center;">Departamento</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            if (Model.involucrados != null)
+                            {
+                                foreach (var item in Model.involucrados)
+                                {
+                                    <tr>
+                                        <td>@item.nombre</td>
+                                        <td>@item.sede</td>
+                                        <td>@item.departamento</td>
+                                    </tr>
+                                }
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Scripts/popper.min.js"></script>
+<script src="~/Scripts/jquery-3.5.1.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<script src="~/Assets/DataTables/datatables.js"></script>
+<script src="~/Assets/Datetimepicker/js/moment.min.js"></script>
+<script src="~/Assets/Datetimepicker/js/daterangepicker.js"></script>
+
+<script>
+    window.print();
+    window.onfocus = function () { window.close(); }
+</script>

@@ -1,0 +1,45 @@
+﻿<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="card-header">                       
+                    </div>
+                    <div class="card-body">
+                        <div class="form-row">
+                            <p>
+                                Hemos recibido su denuncia con éxito, sin embargo usted a incluido en su denuncia a todos los miembros del comité de ética, lo que hace imposible revisar su denuncia en Chile, por este motivo le solicitamos que ingresé su denuncia directamente en el canal de ética de Japón, </p>
+                            <p>
+                                para ello por favor haga su denuncia en el siguiente link
+                            </p>
+                            <p>
+                                <a href="https://www.marubenicorp.ethicspoint.com"> www.marubenicorp.ethicspoint.com </a>
+                            </p>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+    <div class="card-footer">
+        <a href="~/denuncia/Cancelar" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="bottom" title="Cancelar Ingreso"><i class="fas fa-ban"></i>&nbsp;Cancelar</a>
+        <div class="float-end">
+            @*<a id="btnImprimir" name="btnImprimir" href="#" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Imprimir"><i class="fas fa-print"></i>&nbsp;Imprimir</a>*@
+        </div>        
+    </div>
+</div>
+
+<script src="~/Scripts/popper.min.js"></script>
+<script src="~/Scripts/jquery-3.5.1.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<script src="~/Assets/DataTables/datatables.js"></script>
+<script src="~/Assets/Datetimepicker/js/moment.min.js"></script>
+<script src="~/Assets/Datetimepicker/js/daterangepicker.js"></script>
+<script>
+     $("#btnImprimir").click(function () {
+        window.open("@Url.Action("NoRegistra","Denuncia")", "_blank",
+            "menubar=no, toolbar=no, resizable=no, top=100, left=200, width=900, height=500");
+    });
+</script>

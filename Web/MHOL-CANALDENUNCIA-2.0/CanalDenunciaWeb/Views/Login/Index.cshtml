@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<form id="formLogin">
+    <div class="row">
+        <div class="col-12">
+            &nbsp;
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 offset-md-4 col-sm-12">
+            <div class="card border-danger mb-3">
+                <div class="card-header">Acceso al Sistema</div> @Html.AntiForgeryToken()
+                <div class="card-body">
+                    <div class="form-group" id="frmUsuario">
+                        <label for="exampleInputEmail1">Usuario</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="Usuario" name="Usuario" required="" autocomplete="off" placeholder="Ingrese su rut">
+                        </div>
+                        <div class="invalid-feedback" id="msjUsuario"></div>
+                    </div>
+                    <div class="form-group" id="frmPassword">
+                        <label for="exampleInputEmail1">Contraseña</label>
+                        <div class="input-group mb-3">
+                            <input type="password" class="form-control" id="Password" name="Password" required="" autocomplete="off" placeholder="Ingrese su Clave">
+
+                        </div>
+                        <div class="invalid-feedback" id="msjPassword"></div>
+                    </div>
+                    <div class="form-group">
+                        @Html.ValidationSummary(false, "", new { @class = "text-danger", id = "validationSummary" })
+
+                    </div>
+                </div>
+                <div class="card-footer">
+                    @*<div class="row">*@
+
+                    @*<button id="btnLogin" name="btnLogin" class="btn btn-primary btn-block"><i class="fas fa-key"></i>&nbsp;Iniciar Sesión</button>*@
+                    <a id="btnLogin" name="btnLogin" class="btn btn-danger btn-block" data-toggle="tooltip" data-placement="bottom" title="Iniciar Sesión" href="#"><i class="fas fa-key"></i>&nbsp;Iniciar Sesión</a>
+                    <div class="float-end">
+                        <a id="btnEntrarAnonimo" name="btnEntrarAnonimo" href="~/Login/IndexAnonimo" class="btn btn-danger btn-block" data-toggle="tooltip" data-placement="bottom" title="Inicio Anónimo"><i class="fas fa-user-secret"></i>&nbsp;Inicio Anónimo</a>
+                    </div>
+                    @*</div>*@
+                    <div class="row">
+                        <a id="btnRecupera" name="btnRecupera" href="~/Login/RecuperarPassword" class="btn btn-link" target="_blank">Recuperar contraseña</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="card border-0 mb-3">
+                <div class="body">
+                    @*<font size="1" color="silver"> @ViewBag.textoLogin</font>*@
+                    <font size="2">
+                        <p>
+                            En Marubeni trabajamos comprometidos con elevar los estándares de transparencia, probidad y responsabilidad.<br /><br />
+                            Como parte de este proceso, disponemos de una Línea de Denuncia que le permite reportar, <i><u>individualizándose o en forma anónima</u> </i>, hechos que puedan constituir infracciones a la normativa legal, las políticas, los procedimientos, el Manual de Compliance o cualquier otra norma aplicable a la Compañía y a sus trabajadores.<br />
+                            Para ingresar por primera vez deberá ingresar su RUT y la contraseña temporal que será enviada a su correo corporativo por el área Compliance, luego hacer clic en ícono  <img src="~/images/recuperaContrasena.png" class="d-inline-block mr-1" alt="" width="60" height="15" loading="lazy"> (Iniciar Sesión) y el sistema le solicitará modificar su contraseña por una definitiva.<br />
+                            Para denuncias anónimas ingresar en el icono <img src="~/images/inicioAnonimo.png" class="d-inline-block mr-1" alt="" width="55" height="15" loading="lazy"> (Inicio Anónimo) <br /><br />
+                            Todas las denuncias recibidas a través de esta línea son atendidas y, si el caso lo amerita, investigadas de acuerdo a las normas vigentes. Solicitamos a usted usar esta herramienta en forma seria, responsable y respetando los derechos de las personas, empleándola para materias que constituyen una infracción, aportando información clara y completa que permita iniciar una investigación si corresponde (ej. el nombre de personas y/o empresas involucradas; cómo, cuándo y dónde ocurrió la posible falta, entre otros).<br />
+                            Una vez que usted complete su denuncia, el sistema le asignará un código único para su denuncia. Por favor, anote este código y manténgalo en un lugar seguro. <br />
+                            Esta plataforma también cuenta con un sistema de seguimiento el que le permitirá mantenerse comunicado con el área de Compliance, en caso de que necesitemos información adicional y/o comunicar el resultado de la gestión de su denuncia. A su vez podrá acceder  a revisar el estado de su denuncia de forma independiente.<br />
+                        </p>
+
+                    </font>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<div id="Modal" class="modal fade" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal">
+        <div class="modal-content">
+            <div id="RolContainer">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+</script>
+<script src="~/Scripts/jquery-3.5.1.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<script type="text/javascript" src="~/Scripts/sweetalert2.all.min.js"></script>
+<script src="~/Scripts/page/login.js"></script>
+<script>
+
+</script>

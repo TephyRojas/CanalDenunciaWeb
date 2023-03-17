@@ -1,0 +1,73 @@
+﻿body {
+    min-height: 100vh;
+    position: relative;
+    margin: 0;
+    padding-bottom: 100px;
+    box-sizing: border-box;
+}
+
+.maru_menu_principal {
+    background-color: white !important;
+    padding: 1rem 1rem;
+}
+
+.maru_menu_principal_secundario {
+    background-color: lavender !important;
+    padding: 1rem 1rem;
+}
+
+.maru_menu_header {
+    background-color: white !important;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+.maru_menu_footer {
+    background-color: #e21212 !important;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+.row {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.tabla_condensada {
+    font-size: 12px;
+}
+
+.btnGrilla {
+    color: #000;
+}
+
+.btnGrillaVerde {
+    color: green;
+}
+
+.btnGrillaRoja {
+    color: red;
+}
+
+.maru_card_info {
+    background-color: black
+    /*background-color: #872930;*/
+}
+
+.maru_card_sinBorde {
+    padding-bottom: 0px;
+}
+
+
+footer {
+    position: absolute;
+    height: 100px;
+    background-color: #e21212;
+    background-repeat: no-repeat;
+    background-size: 102% 1rem;
+    background-position: center 97%;
+    background-size: 102% 1rem;
+    width: 100%;
+    bottom: 0;
+    padding-top: 10px;
+}

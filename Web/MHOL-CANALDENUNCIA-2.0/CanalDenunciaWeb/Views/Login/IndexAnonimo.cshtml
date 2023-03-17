@@ -1,0 +1,41 @@
+﻿<div class="row">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-2 col-sm-12">
+                    Nro. Denuncia
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <input type="text" id="Denuncia" name="Denuncia" class="form-control" placeholder="ABC-AB-190001010000" />
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <button id="btnBuscar" name="btnBuscar" class="btn btn-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="Buscar" ><i class="fas fa-search"></i>&nbsp;Buscar</button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row col-md-2">
+                <a id="btnNuevo" name="btnNuevo" href="#"  onclick="AbrirModalAnonimo();" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Nueva Denuncia"><i class="fas fa-plus-circle"></i>&nbsp;Nueva Denuncia</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div id="ModalAnonimo" class="modal fade" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div id="CorreoContainer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.5.1.js"></script>
+<script src="~/Scripts/umd/popper.min.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<script src="~/Assets/DataTables/datatables.js"></script>
+<script src="~/Assets/Datetimepicker/js/moment.min.js"></script>
+<script src="~/Assets/Datetimepicker/js/daterangepicker.js"></script>
+<script src="~/Scripts/sweetalert2.all.min.js"></script>
+<script src="~/Scripts/page/denuncia.js"></script>

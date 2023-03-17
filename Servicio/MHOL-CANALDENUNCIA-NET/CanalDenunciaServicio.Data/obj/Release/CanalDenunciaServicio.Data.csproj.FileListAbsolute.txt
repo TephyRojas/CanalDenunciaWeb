@@ -1,0 +1,9 @@
+C:\Proyectos\CanalDeDenuncia\Servicios\CanalDenunciaServicio.Data\bin\Release\CanalDenunciaServicio.Data.dll
+C:\Proyectos\CanalDeDenuncia\Servicios\CanalDenunciaServicio.Data\bin\Release\CanalDenunciaServicio.Data.pdb
+C:\Proyectos\CanalDeDenuncia\Servicios\CanalDenunciaServicio.Data\bin\Release\Dapper.dll
+C:\Proyectos\CanalDeDenuncia\Servicios\CanalDenunciaServicio.Data\bin\Release\Dapper.xml
+C:\Proyectos\CanalDeDenuncia\Servicios\CanalDenunciaServicio.Data\obj\Release\CanalDenunciaServicio.Data.csproj.CoreCompileInputs.cache
+C:\Proyectos\CanalDeDenuncia\Servicios\CanalDenunciaServicio.Data\obj\Release\CanalDenunciaServicio.Data.csproj.CopyComplete
+C:\Proyectos\CanalDeDenuncia\Servicios\CanalDenunciaServicio.Data\obj\Release\CanalDenunciaServicio.Data.dll
+C:\Proyectos\CanalDeDenuncia\Servicios\CanalDenunciaServicio.Data\obj\Release\CanalDenunciaServicio.Data.pdb
+C:\Proyectos\CanalDeDenuncia\Servicios\CanalDenunciaServicio.Data\obj\Release\CanalDenunciaServicio.Data.csproj.AssemblyReference.cache

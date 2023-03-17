@@ -1,0 +1,302 @@
+﻿@model List<CanalDenunciaWeb.Data.Package.DenunciaPkg.DenunciaListOutputDto>
+
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Resumen Denuncias</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        @if (ViewBag.Perfil == ViewBag.RolDenunciante)
+        {
+            <a id="btnNuevo" name="btnNuevo" onclick="AbrirModal(@ViewBag.IdUsuario);" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Nueva Denuncia"><i class="fas fa-plus-circle"></i>&nbsp;Nueva Denuncia</a>
+        }
+        <div class="float-end">
+            <a class="btn btn-secondary" data-bs-toggle="collapse" href="#collapseFiltro" role="button" aria-expanded="false" aria-controls="collapseFiltro"><i class="fas fa-sort"></i>&nbsp;Filtrar Denuncias</a>&nbsp;
+        </div>
+        </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div id="collapseFiltro" class="collapse">
+            <div class="card">
+                <div class="card-header">
+                    Filtro
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-2 col-sm-12">
+                            Nro. Denuncia
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <input type="text" id="filtroDenuncia" name="filtroDenuncia" class="form-control" placeholder="ABC-AB-190001010000" />
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2 col-sm-12">
+                            Fecha Ocurrencia
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <input type="text" id="filtroFechaO" name="filtroFechaO" class="form-control" placeholder="Seleccione un rango de Fechas" />
+                        </div>
+                        <div class="col-md-2 col-sm-12">Fecha Ingreso</div>
+                        <div class="col-md-4 col-sm-12">
+                            <input type="text" class="form-control" id="filtroFecha" name="filtroFecha" placeholder="Seleccione un rango de Fechas">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2 col-sm-12">
+                            Sede
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            @Html.DropDownList("filtroSede", (SelectList)ViewBag.Sede, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-2 col-sm-12">
+                            Departamento
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            @if (ViewBag.Departamento == null)
+                            {
+                                <select id="filtroDepartamento" name="filtroDepartamento" class="form-control">
+                                    <option value="0"> - Seleccione -</option>
+                                </select>
+                            }
+                            else
+                            {
+                                @Html.DropDownList("filtroDepartamento", (SelectList)ViewBag.Departamento, htmlAttributes: new { @class = "form-control" })
+                            }
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2 col-sm-12">
+                            Tipo Delito
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            @Html.DropDownList("filtroTipoDelito", (SelectList)ViewBag.TipoDelito, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-2 col-sm-12">
+                            Estado
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            @Html.DropDownList("filtroEstado", (SelectList)ViewBag.Estado, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="float-end">
+                        <button id="btnLimpiaFiltro" name="btnLimpiaFiltro" class="btn btn-secondary btn-sm" data-toggle="tooltip" data-placement="top" onclick="LimpiarFiltro();" title="Limpiar Filtro"><i class="fas fa-eraser"></i>&nbsp;Limpiar Filtro</button>&nbsp;
+                        <button id="btnFiltrar" name="btnFilrar" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Buscar" onclick="Filtrar()"><i class="fas fa-filter"></i>&nbsp;Buscar</button>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="card">
+            <div class="card-header text-white maru_card_info">
+                Denuncia
+            </div>
+            <div class="card-body">
+                <table id="tblResultado" class="table table-bordered table-condensed table-hover tabla_condensada">
+                    <thead>
+                        <tr>
+                            <th>Nro. Denuncia</th>
+                            <th style="width:150px; text-align:center;">Fecha Ingreso</th>
+                            <th style="width:150px; text-align:center;">Tipo Delito</th>
+                            <th style="width:200px; text-align:center;">Estado</th>
+                            <th style="width:100px; text-align:center;">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>@item.Denuncia</td>
+                            <td>@item.FechaIngreso</td>
+                            <td>@item.TipoDelito</td>
+                            <td>@item.Estado</td>
+                            <td style="text-align:center;">
+                                <a id="btnVer" name="btnVer" class="btnGrilla" href="~/denuncia/DatosInvolucrados?idDenuncia=@item.IdDenuncia&desde=1" data-toggle="tooltip" data-placement="top" title="Ver"><i class="fas fa-lg fa-eye"></i></a>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+           
+            <div class="card-footer">
+                <div class="float-end">
+                    @if (ViewBag.Perfil == ViewBag.RolComite || ViewBag.Perfil == ViewBag.RolOficial)
+                    {
+                    <button id="btnExportar" name="btnExportar" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Exportar" onclick="Exportar()"><i class="fas fa-archive"></i>&nbsp;ExportarCSV</button>
+                    }
+                  
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<div id="Modal" class="modal fade" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div id="DatosContainer">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Scripts/jquery-3.5.1.js"></script>
+<script src="~/Scripts/umd/popper.min.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<script src="~/Assets/DataTables/datatables.js"></script>
+<script src="~/Assets/Datetimepicker/js/moment.min.js"></script>
+<script src="~/Assets/Datetimepicker/js/daterangepicker.js"></script>
+<script src="~/Scripts/sweetalert2.all.min.js"></script>
+<script src="~/Scripts/page/denuncia.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#tblResultado').DataTable({
+            processing: true,
+            responsive: true,
+            lengthMenu: [[10, 20, -1], [10, 20, "Todos"]],
+            pageLength: 10,
+            columnDefs: [{ orderable: false, targets: [1] }],
+            language: {
+                "url": "../Assets/Datatables/spanish.json"
+            }
+        });
+    });
+
+    $('#filtroSede').change(function () {
+        const id = $(this).val();
+        const url = BASE_PATH + 'Denuncia/GetDepartamentoByIdSede/' + id;
+
+        if (id == '0') {
+            let optionsDepartamento = "";
+            optionsDepartamento = `<option value=${'0'}>${' - Seleccione -'}</option>`
+            $('#filtroDepartamento').empty().html(optionsDepartamento);
+            return false;
+        }
+
+        $.ajax({
+            url: url,
+            data: {},
+            contentType: false,
+            processData: false,
+            type: 'GET',
+            success: function (response) {
+                if (response.respuesta === undefined) {
+                    let options = "";
+                    $(response).each(function (index, value) {
+                        options += `<option value=${value.IdDepartamentoSede}>${value.Nombre}</option>`
+                    });
+                    $('#filtroDepartamento').empty().html(options);
+                } else {
+                    swal.fire({
+                        position: 'top-end',
+                        title: 'Error',
+                        text: response.errorMessage,
+                        icon: 'error',
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+                }
+            },
+            error: function (response, b, c) {
+
+                swal.fire({
+                    position: 'top-end',
+                    title: 'Error',
+                    text: "Ha ocurrido un error inesperado, intente nuevamente. Si el error persiste comuníquese con el administrador",
+                    icon: 'error',
+                    showConfirmButton: false,
+                    timer: 2000
+                })
+            }
+        });
+
+
+    });
+
+    $('input[name="filtroFechaO"]').daterangepicker({
+        timePicker: false,
+        locale: {
+            "format": 'DD/MM/YYYY',
+            "separator": " - ",
+            "applyLabel": "Seleccionar",
+            "cancelLabel": "Cancelar",
+            "fromLabel": "Desde",
+            "toLabel": "Hasta",
+            "customRangeLabel": "Custom",
+            "weekLabel": "W",
+            "daysOfWeek": [
+                "Do",
+                "Lu",
+                "Ma",
+                "Mi",
+                "Ju",
+                "Vi",
+                "Sa"
+            ],
+            "monthNames": [
+                "Enero",
+                "Febrero",
+                "Marzo",
+                "Abril",
+                "Mayo",
+                "Junio",
+                "Julio",
+                "Agosto",
+                "Setiembre",
+                "Octubre",
+                "Noviembre",
+                "Diciembre"
+            ],
+            "firstDay": 1,
+        }
+    });
+    $('input[name="filtroFechaO"]').on('cancel.daterangepicker', function (ev, picker) {
+        $(this).val('');
+    });
+
+     $(function () {
+       
+         
+         $('#filtroDenuncia').val('@ViewBag.Denuncia');
+         $('#filtroFechaO').val('@ViewBag.FechaOcurrencia');
+         $('#filtroFecha').val('@ViewBag.FechaIngreso');
+         $('#filtroSede').val('@ViewBag.IdSede');
+         //$('#filtroDepartamento').val('@ViewBag.IdDepartamento');
+         $('#filtroTipoDelito').val('@ViewBag.IdTipoDelito');
+         $('#filtroEstado').val('@ViewBag.IdEstado');
+    });
+
+    function LimpiarFiltro() {
+        $('#filtroDenuncia').val('');
+        $('#filtroFechaO').val('');
+        $('#filtroFecha').val('');
+        $('#filtroSede').val('0');
+        $('#filtroDepartamento').val('0');
+        $('#filtroTipoDelito').val('0');
+        $('#filtroEstado').val('0');
+    }
+</script>
+

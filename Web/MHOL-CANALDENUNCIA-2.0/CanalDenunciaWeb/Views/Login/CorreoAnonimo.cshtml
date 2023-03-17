@@ -1,0 +1,33 @@
+﻿<form id="frmCorreo">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    Correo electrónico (opcional)
+                </div>
+                <div class="card-body">                   
+                    <div class="form-group" id="frmEmail">
+                        <label for="Email">Email&nbsp;</label>
+                        <input type="email" class="form-control" id="Email" name="Email" aria-describedby="Email" value="">
+                        <div class="invalid-feedback" id="msjEmail"></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a id="btnOmitir" name="btnOmitir" class="btn btn-danger btn-sm" href="~/denuncia/DatosInvolucrados?idDenuncia=0&desde=1" data-toggle="tooltip" data-placement="bottom" title="Omitir"><i class="fas fa-ban"></i>&nbsp;Omitir</a>
+                    <div class="float-end">
+                        <a id="btnGuardarCorreo" name="btnGuardarCorreo" class="btn btn-success btn-block" data-toggle="tooltip" data-placement="bottom" title="Guardar Correo" href="#"><i class="fas fa-chevron-circle-right"></i>&nbsp;Guardar</a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</form>
+<script src="~/Scripts/jquery-3.5.1.js"></script>
+<script src="~/Scripts/umd/popper.min.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<script src="~/Assets/DataTables/datatables.js"></script>
+<script src="~/Assets/Datetimepicker/js/moment.min.js"></script>
+<script src="~/Assets/Datetimepicker/js/daterangepicker.js"></script>
+<script src="~/Scripts/sweetalert2.all.min.js"></script>
+<script src="~/Scripts/page/login.js"></script>

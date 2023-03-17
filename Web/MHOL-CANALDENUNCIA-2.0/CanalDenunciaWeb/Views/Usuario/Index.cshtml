@@ -1,0 +1,70 @@
+﻿@model List<string>
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="~/denuncia/Cancelar">Home</a></li>
+                <li class="breadcrumb-item"><a href="~/denuncia/Cancelar">Mantenedor</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Usuario</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <a id="btnDescargar" name="btnDescargar" onclick="Descargar()" class="btn btn-outline-success btn-block" data-toggle="tooltip" data-placement="bottom" title="Descargar Plantilla"><i class="fas fa-download"></i>&nbsp;Plantilla</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+
+            <form enctype="multipart/form-data" id="formuploadajax" method="post">
+                <div class="mb-3">
+                    @Html.TextBox("archivo", "", new { @class = "form-control", @type = "file", @accept = ".csv" }) <br />
+                </div>
+                <div class="float-end">
+                    <input type="submit" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="bottom" title="Subir" value="Cargar Archivo" />
+                </div>
+                @Html.AntiForgeryToken()
+            </form>
+            @*@using (Html.BeginForm("CargarArchivo", "Usuario", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="card-body">
+                <div class="mb-3">
+                    @Html.TextBox("file", "", new { @class = "form-control", @type = "file", @accept = ".csv" }) <br />
+                </div>
+                <div class="float-end">
+                    <input type="submit" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="bottom" title="Subir" value="Cargar Archivo" />
+                </div>
+                @Html.AntiForgeryToken()
+            </div>
+        }
+            <div class="card-footer">
+                <a href="~/denuncia/Cancelar" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="bottom" title="Cancelar Ingreso"><i class="fas fa-ban"></i>&nbsp;Cancelar</a>
+
+            </div>*@
+        </div>
+
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.5.1.js"></script>
+<script src="~/Scripts/umd/popper.min.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<script src="~/Assets/DataTables/datatables.js"></script>
+<script src="~/Assets/Datetimepicker/js/moment.min.js"></script>
+<script src="~/Assets/Datetimepicker/js/daterangepicker.js"></script>
+<script src="~/Scripts/sweetalert2.all.min.js"></script>
+<script src="~/Scripts/page/usuario.js"></script>
+<script type="text/javascript">
+  
+   
+   
+   
+</script>
+

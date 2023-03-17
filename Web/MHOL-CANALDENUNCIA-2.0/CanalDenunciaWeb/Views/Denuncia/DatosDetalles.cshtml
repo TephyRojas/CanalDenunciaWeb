@@ -1,0 +1,273 @@
+﻿@model List<CanalDenunciaWeb.Models.Comentarios>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<form id="frmDenunciaDetalles">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="~/denuncia/Cancelar">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Denuncia</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <ul class="nav nav-tabs">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="~/denuncia/DatosInvolucrados?idDenuncia=@ViewBag.IdDenuncia" >Involucrados</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="~/denuncia/datosArchivosAdjuntos?idDenuncia=@ViewBag.IdDenuncia">Documentos Adjuntos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Detalle</a>
+                </li>
+                @if (ViewBag.VerEstado == 1)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/denuncia/datosEstado?idDenuncia=@ViewBag.IdDenuncia">Estado</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header text-white maru_card_info">
+                    <label>Detalles Denuncia</label>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <div class="row">
+                            <label for="Fecha">Sede&nbsp;</label>
+                            <div class="col-md-4 col-sm-12">
+                                @Html.DropDownList("IdSede", (SelectList)ViewBag.Sede, htmlAttributes: new { @class = "form-control" })
+                            </div>
+                            <div class="invalid-feedback" id="msjIdSede"></div>
+                        </div>
+                        <div class="row">
+                            <label for="IdDepartamentoSede">Departamento&nbsp;</label>
+                            <div class="col-md-4 col-sm-12">
+                                @if (ViewBag.Departamento == null)
+                                {
+                                    <select id="IdDepartamentoSede" name="IdDepartamentoSede" class="form-control">
+                                        <option value="0"> - Seleccione Sede-</option>
+                                    </select>
+                                }
+                                else
+                                {
+                                    @Html.DropDownList("IdDepartamentoSede", (SelectList)ViewBag.Departamento, htmlAttributes: new { @class = "form-control" })
+                                }
+
+                            </div>
+
+
+                            <div class="invalid-feedback" id="msjIdDepartamentoSede"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <div class=" row">
+                            <div class="col-md-4">
+                                <label for="Delito">Tipo de Delito&nbsp;</label>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="DescripcionDelito">Especificación Delito&nbsp;</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-12">
+                                @Html.DropDownList("IdTipoDelito", (SelectList)ViewBag.Delito, htmlAttributes: new { @class = "form-control" })
+                            </div>
+                            <div class="invalid-feedback" id="msjIdTipoDelito"></div>
+                            <br />
+                            <div class="col-md-4 col-sm-12">
+                                <textarea class="form-control" id="DescripcionDelito" name="DescripcionDelito" rows="4" placeholder="Aquí aparecerá la descripción del delito seleccionado" readonly> @ViewBag.Descripcion</textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br />
+                    <div class="form-group">
+                        <label for="Fecha">Fecha Ocurrencia&nbsp;</label>
+                        <div class="col-md-4 col-sm-12">
+                            <input type="text" id="Fecha" name="Fecha" class="form-control" placeholder="Seleccione un rango de Fechas" />
+                        </div>
+                        <div class="invalid-feedback" id="msjFecha"></div>
+                    </div>
+                    <br />
+                    @if (Model.Count > 0)
+                    {
+                    <div class="card">
+                        <div class="card-header">Historial Comentarios</div>
+
+                        <div class="card-body maru_card_sinBorde">
+                            <table id="tblResultado" class="table table-bordered table-condensed table-hover tabla_condensada">
+                                <thead>
+                                    <tr>
+                                        <th>Fecha </th>
+                                        <th>Usuario</th>
+                                        <th>Comentario</th>
+                                        @*<th style="width:100px; text-align:center;">Acción</th>*@
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                    <tr>
+                                        <td>@item.Fecha</td>
+                                        <td>@item.Usuario</td>
+                                        <td>@item.Comentario</td>
+                                        @*<td style="text-align:center;">
+                                            <a id="btnVer" name="btnVer" class="btnGrilla" href="#" onclick="Ver(item.IdDenunciaComentario);" data-toggle="tooltip" data-placement="top" title="Ver"><i class="fas fa-lg fa-eye"></i></a>
+                                        </td>*@
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    }
+                    <div class="form-group">
+                        <label for="Descripcion">Descripción</label>
+                        <textarea class="form-control" id="Descripcion" name="Descripcion" rows="5" maxlength="3000" placeholder="Ingrese sus comentarios o descripción de la Denuncia">@ViewBag.Descripcion</textarea>
+                    </div>
+                    <div class="form-group">
+                        @Html.ValidationSummary(false, "", new { @class = "text-danger", id = "validationSummary" })
+                    </div>
+                    <input type="hidden" id="IdDepartamentoSede" name="IdDepartamentoSede" />
+                    @Html.AntiForgeryToken()
+                </div>
+                <div class="card-footer">
+                    <a id="btnCancelar" name="btnCancelar" href="~/denuncia/Cancelar"  class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="bottom" title="Cancelar Ingreso"><i class="fas fa-ban"></i>&nbsp;Cancelar</a>
+                    @if (ViewBag.Modificar == 0)
+                    {
+                        <div class="float-end">
+                            <a id="btnFinalizar" name="btnFinalizar" href="~/denuncia/Index" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="bottom" title="Finalizar"><i class="fas fa-chevron-circle-right"></i>&nbsp;Enviar y Finalizar</a>
+
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div id="Modal" class="modal fade" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+            <div id="DatosContainer">
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.5.1.js"></script>
+<script src="~/Scripts/umd/popper.min.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<script src="~/Assets/DataTables/datatables.js"></script>
+<script src="~/Assets/Datetimepicker/js/moment.min.js"></script>
+<script src="~/Assets/Datetimepicker/js/daterangepicker.js"></script>
+<script src="~/Scripts/sweetalert2.all.min.js"></script>
+<script src="~/Scripts/page/datosDetalles.js"></script>
+<script>
+    $('input[name="Fecha"]').daterangepicker({
+        timePicker: false,
+        locale: {
+            "format": 'DD/MM/YYYY',
+            "separator": " - ",
+            "applyLabel": "Seleccionar",
+            "cancelLabel": "Cancelar",
+            "fromLabel": "Desde",
+            "toLabel": "Hasta",
+            "customRangeLabel": "Custom",
+            "weekLabel": "W",
+            "daysOfWeek": [
+                "Do",
+                "Lu",
+                "Ma",
+                "Mi",
+                "Ju",
+                "Vi",
+                "Sa"
+            ],
+            "monthNames": [
+                "Enero",
+                "Febrero",
+                "Marzo",
+                "Abril",
+                "Mayo",
+                "Junio",
+                "Julio",
+                "Agosto",
+                "Setiembre",
+                "Octubre",
+                "Noviembre",
+                "Diciembre"
+            ],
+            "firstDay": 1,
+        }
+    });
+    $('input[name="Fecha"]').on('cancel.daterangepicker', function (ev, picker) {
+        $(this).val('');
+    });
+
+    $('#IdSede').change(function () {
+        const id = $(this).val();
+        const url = BASE_PATH + 'Denuncia/GetDepartamentoByIdSede/' + id;
+
+        if (id == '0') {
+            let optionsDepartamento = "";
+            optionsDepartamento = `<option value=${'0'}>${' - Seleccione -'}</option>`
+            $('#IdDepartamentoSede').empty().html(optionsDepartamento);
+            return false;
+        }
+
+        $.ajax({
+            url: url,
+            data: {},
+            contentType: false,
+            processData: false,
+            type: 'GET',
+            success: function (response) {
+                if (response.respuesta === undefined) {
+                    let options = "";
+                    $(response).each(function (index, value) {
+                        options += `<option value=${value.IdDepartamentoSede}>${value.Nombre}</option>`
+                    });
+                    $('#IdDepartamentoSede').empty().html(options);
+                } else {
+                    swal.fire({
+                        position: 'top-end',
+                        title: 'Error',
+                        text: response.errorMessage,
+                        icon: 'error',
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+                }
+            },
+            error: function (response, b, c) {
+
+                swal.fire({
+                    position: 'top-end',
+                    title: 'Error',
+                    text: "Ha ocurrido un error inesperado, intente nuevamente. Si el error persiste comuníquese con el administrador",
+                    icon: 'error',
+                    showConfirmButton: false,
+                    timer: 2000
+                })
+            }
+        });
+
+
+    });
+    $(function () {
+
+        $('#Fecha').val('@ViewBag.Fecha');
+    });
+</script>

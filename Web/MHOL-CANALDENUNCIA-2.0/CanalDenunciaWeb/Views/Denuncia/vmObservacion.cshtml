@@ -1,0 +1,12 @@
+﻿ @model CanalDenunciaWeb.Data.Package.DenunciaComentarioPkg.DenunciaComentarioOutputDto
+<div class="card">
+    <div class="card-header">Detalle Observación</div>
+    <div class="card-body">
+        <label id="lblObs">@Model.Comentario</label>
+    </div>
+    <div class="card-footer">
+        <div class="float-end">
+            <a id="btnCancelar" name="btnCancelar" href="~/denuncia/datosDetalles?idDenuncia=@Model.IdDenuncia" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="bottom" title="Cancelar"><i class="fas fa-chevron-circle-right"></i>&nbsp;Cancelar</a>
+        </div>
+    </div>
+</div>

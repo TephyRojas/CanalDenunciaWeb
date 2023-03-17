@@ -1,0 +1,197 @@
+﻿@model CanalDenunciaWeb.Models.vmDenunciaInvolucradoDto
+<link href="~/Assets/DataTables/datatables.css" rel="stylesheet" />
+
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="~/denuncia/Cancelar">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Denuncia</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active">Involucrados</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="~/denuncia/DatosArchivosAdjuntos?idDenuncia=@ViewBag.IdDenuncia">Documentos Adjuntos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="~/denuncia/datosDetalles?idDenuncia=@ViewBag.IdDenuncia">Detalle</a>
+            </li>
+            @if (ViewBag.VerEstado == 1)
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="~/denuncia/datosEstado?idDenuncia=@ViewBag.IdDenuncia">Estado</a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header text-white maru_card_info">
+                Involucrados
+            </div>
+            <div class="card-body">
+                <div class="form-group" id="frmInvolucrado">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    Involucrados
+                                    @if (ViewBag.Modificar == 0)
+                                    {
+                                        <div class="float-end">
+                                            <a id="btnAgregar" name="btnAgregar" class="btn btn-primary btn-sm ml-1" href="~/denuncia/InvolucradosDenunciante?idDenuncia=@ViewBag.IdDenuncia" data-placement="top" title="Agregar"><i class="fas fa-lg fa-plus"></i>&nbsp;Agregar Funcionarios Involucrados</a>
+                                        </div>
+                                    }
+                                </div>
+                                <div class="card-body maru_card_sinBorde">
+                                    <table id="tblResultado" class="table table-bordered table-condensed table-hover tabla_condensada">
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre </th>
+                                                <th>Sede </th>
+                                                <th>Departamento </th>
+                                                <th style="width:100px; text-align:center;">Acción</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model.listInvolucrado)
+                                            {
+                                                <tr>
+                                                    <td>@item.Nombre</td>
+                                                    <td>@item.Sede</td>
+                                                    <td>@item.Departamento</td>
+
+                                                    <td style="text-align:center;">
+                                                        @if (ViewBag.Modificar == 0)
+                                                        {
+                                                            <a id="btnEliminar" name="btnEliminar" class="btnGrilla" href="#" onclick="ConfirmarEliminar('@item.IdUsuario');" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-lg fa-trash"></i></a>
+
+                                                        }
+                                                        &nbsp;
+                                                    </td>
+                                                </tr>
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="form-group" id="frmInvolucradoCE">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    Involucrados Comité de Ética
+                                    @if (ViewBag.Modificar == 0)
+                                    {
+                                        <div class="float-end">
+                                            <a id="btnAgregarCE" name="btnAgregarCE" class="btn btn-outline-primary btn-sm ml-1" href="~/denuncia/InvolucradosCE?idDenuncia=@ViewBag.IdDenuncia" data-placement="top" title="Agregar"><i class="fas fa-lg fa-plus"></i>&nbsp;Agregar Involucrado Comité</a>
+                                        </div>
+                                    }
+                                </div>
+                                <div class="card-body maru_card_sinBorde">
+                                    <table id="tblResultadoCE" class="table table-bordered table-condensed table-hover tabla_condensada">
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre </th>
+                                                <th>Sede</th>
+                                                <th>Departamento</th>
+                                                <th style="width:100px; text-align:center;">Acción</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model.listInvolucradoCE)
+                                            {
+                                                <tr>
+                                                    <td>@item.Nombre</td>
+                                                    <td>@item.Sede</td>
+                                                    <td>@item.Departamento</td>
+
+                                                    <td style="text-align:center;">
+                                                        @if (ViewBag.Modificar == 0)
+                                                        {
+                                                            <a id="btnEliminar" name="btnEliminar" class="btnGrilla" href="#" onclick="ConfirmarEliminar('@item.IdUsuario');" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-lg fa-trash"></i></a>
+                                                        }
+                                                        &nbsp;
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @Html.AntiForgeryToken()
+                <input type="hidden" id="IdDenuncia" name="IdDenuncia" value="@ViewBag.IdDenuncia" />
+            </div>
+            <div class="card-footer">
+
+                <a class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="bottom" title="Cancelar Ingreso" href="~/denuncia/Cancelar"><i class="fas fa-ban"></i>&nbsp;Cancelar</a>
+                @if (ViewBag.Modificar == 0)
+                {
+                    <div class="float-end">
+
+                        <a id="btnContinuar" name="btnContinuar" href="~/denuncia/datosarchivosadjuntos?idDenuncia=@ViewBag.IdDenuncia" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="bottom" title="Continuar"><i class="fas fa-chevron-circle-right"></i>&nbsp;Continuar</a>
+                    </div>
+                }
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+<script src="~/Scripts/jquery-3.5.1.js"></script>
+<script src="~/Scripts/umd/popper.min.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<script src="~/Assets/DataTables/datatables.js"></script>
+<script src="~/Assets/Datetimepicker/js/moment.min.js"></script>
+<script src="~/Assets/Datetimepicker/js/daterangepicker.js"></script>
+<script src="~/Scripts/sweetalert2.all.min.js"></script>
+<script src="~/Scripts/page/datosInvolucrados.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#tblResultado').DataTable({
+            processing: true,
+            responsive: true,
+            lengthMenu: [[35, 50, -1], [35, 50, "Todos"]],
+            pageLength: 35,
+            columnDefs: [{ orderable: false, targets: [1] }],
+            language: {
+                "url": "../Assets/Datatables/spanish.json"
+            }
+        });
+
+        $('#tblResultadoCE').DataTable({
+            processing: true,
+            responsive: true,
+            lengthMenu: [[35, 50, -1], [35, 50, "Todos"]],
+            pageLength: 35,
+            columnDefs: [{ orderable: false, targets: [1] }],
+            language: {
+                "url": "../Assets/Datatables/spanish.json"
+            }
+        });
+
+    });
+
+</script>

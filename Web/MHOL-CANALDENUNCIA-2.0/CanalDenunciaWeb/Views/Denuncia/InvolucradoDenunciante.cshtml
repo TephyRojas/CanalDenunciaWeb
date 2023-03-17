@@ -1,0 +1,192 @@
+﻿@model List<CanalDenunciaWeb.Data.Package.DenunciaInvolucradoPkg.DenunciaInvolucradoListOutputDto>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                Filtros
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-2 col-sm-12">
+                        Nombre Involucrado
+                    </div>
+                    <div class="col-md-10 col-sm-12">
+                        <input type="text" id="filtroNombre" name="filtroNombre" class="form-control" placeholder="Ingrese Nombre" value="@ViewBag.Nombre" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 col-sm-12">
+                        Sede
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        @Html.DropDownList("filtroSede", (SelectList)ViewBag.Sede, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                        Departamento
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                        @if (ViewBag.Departamento == null)
+                        {
+                            <select id="filtroDepartamento" name="filtroDepartamento" class="form-control">
+                                <option value="0"> - Seleccione -</option>
+                            </select>
+                        }
+                        else
+                        {
+                            @Html.DropDownList("filtroDepartamento", (SelectList)ViewBag.Departamento, htmlAttributes: new { @class = "form-control" })
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="float-end">
+                    <button id="btnLimpiaFiltro" name="btnLimpiaFiltro" class="btn btn-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="Limpiar Filtro" onclick="LimpiarFiltro()"><i class="fas fa-eraser"></i>&nbsp;Limpiar Filtro</button>&nbsp;
+                    <button id="btnFiltrar" name="btnFilrar" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Buscar" onclick="Filtrar()"><i class="fas fa-filter"></i>&nbsp;Buscar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<form id="frmInvolurado">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="card">
+                <div class="card-header text-white maru_card_info">
+                    Involucrados
+                </div>
+                <div class="card-body" id="divInvolucrado">
+                    <table id="tblInvolucrado" class="table table-bordered table-condensed table-hover tabla_condensada">
+                        <thead>
+                            <tr>
+                                <th style="width:50px; text-align:center;">Seleccionar </th>
+                                <th>Involucrado</th>
+                                <th style="width:150px; text-align:center;">Sede</th>
+                                <th style="width:150px; text-align:center;">Departamento</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var involucrado in ViewBag.Involucrado)
+                            {
+                                <tr>
+                                    <td style="width:70px; text-align:center;">
+                                        <input type="checkbox" id="chk" value="@involucrado.IdUsuario" />
+                                    </td>
+                                    <td>
+                                        @involucrado.Nombre
+                                    </td>
+                                    <td>
+                                        @involucrado.Sede
+                                    </td>
+                                    <td>
+                                        @involucrado.Departamento
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <input type="hidden" id="IdDenuncia" name="IdDenuncia" value="@ViewBag.Denuncia" />
+                    @Html.AntiForgeryToken()
+                </div>
+                <div class="card-footer">
+                    <a href="~/denuncia/datosinvolucrados?idDenuncia=@ViewBag.Denuncia" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="bottom" title="Cancelar Ingreso"><i class="fas fa-ban"></i>&nbsp;Cancelar</a>
+                    <div class="float-end">
+                        <a id="btnGuardarInvolucrados" name="btnGuardarInvolucrados" href="#" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="bottom" title="Guardar"><i class="fas fa-save"></i>&nbsp;Guardar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<script src="~/Scripts/jquery-3.5.1.js"></script>
+<script src="~/Scripts/umd/popper.min.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<script src="~/Assets/DataTables/datatables.js"></script>
+<script src="~/Assets/Datetimepicker/js/moment.min.js"></script>
+<script src="~/Assets/Datetimepicker/js/daterangepicker.js"></script>
+<script src="~/Scripts/sweetalert2.all.min.js"></script>
+<script src="~/Scripts/page/datosInvolucrados.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#tblInvolucrado').DataTable({
+            processing: true,
+            responsive: true,
+            lengthMenu: [[35, 50, -1], [35, 50, "Todos"]],
+            pageLength: 35,
+            columnDefs: [{ orderable: false, targets: [1] }],
+            language: {
+                "url": "../Assets/Datatables/spanish.json"
+            }
+        });
+
+
+    });
+
+    $('#filtroSede').change(function () {
+        const id = $(this).val();
+        const url = BASE_PATH + 'Denuncia/GetDepartamentoByIdSede/' + id;
+
+        if (id == '0') {
+            let optionsDepartamento = "";
+            optionsDepartamento = `<option value=${'0'}>${' - Seleccione -'}</option>`
+            $('#filtroDepartamento').empty().html(optionsDepartamento);
+            return false;
+        }
+
+        $.ajax({
+            url: url,
+            data: {},
+            contentType: false,
+            processData: false,
+            type: 'GET',
+            success: function (response) {
+                if (response.respuesta === undefined) {
+                    let options = "";
+                    $(response).each(function (index, value) {
+                        options += `<option value=${value.IdDepartamentoSede}>${value.Nombre}</option>`
+                    });
+                    $('#filtroDepartamento').empty().html(options);
+                } else {
+                    swal.fire({
+                        position: 'top-end',
+                        title: 'Error',
+                        text: response.errorMessage,
+                        icon: 'error',
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+                }
+            },
+            error: function (response, b, c) {
+
+                swal.fire({
+                    position: 'top-end',
+                    title: 'Error',
+                    text: "Ha ocurrido un error inesperado, intente nuevamente. Si el error persiste comuníquese con el administrador",
+                    icon: 'error',
+                    showConfirmButton: false,
+                    timer: 2000
+                })
+            }
+        });
+
+
+    });
+
+
+     $(function () {
+
+         $('#filtroNombre').val('@ViewBag.Nombre');
+         $('#filtroSede').val('@ViewBag.IdSede');
+    });
+
+    function LimpiarFiltro() {
+        $('#filtroNombre').val('');
+        $('#filtroSede').val('0');
+        $('#filtroDepartamento').val('0');
+    }
+
+
+</script>
+

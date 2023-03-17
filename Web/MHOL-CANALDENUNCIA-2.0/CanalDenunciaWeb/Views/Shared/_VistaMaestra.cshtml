@@ -1,0 +1,111 @@
+﻿<! DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script src="~/Scripts/es6-promise.auto.min.js"></script>
+    <script src="~/Scripts/framework-1.0.0.js"></script>
+    <script src="~/Assets/fontawesome/js/all.min.js"></script>
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Custom.css" rel="stylesheet" />
+    <link href="~/Assets/DataTables/datatables.css" rel="stylesheet" />
+    <link href="~/Assets/DataTables/datatables.min.css" rel="stylesheet" />
+    <link href="~/Assets/fontawesome/css/all.min.css" rel="stylesheet" />
+    <link href="~/Assets/Datetimepicker/css/daterangepicker.css" rel="stylesheet" />
+    <title>Canal de Denuncia</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark maru_menu_principal">
+            <div class="col-md-4">
+                <a class="navbar-brand" href="#">
+                    <img src="~/images/logo.png" class="d-inline-block mr-1" alt="" width="200" height="50" loading="lazy">
+                </a>
+            </div>
+            <div class="col-md-4" style="font-size:32px; color:black">
+                <div class="center-block">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Canal de Denuncia
+                </div>
+            </div>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMarubeni" aria-controls="navbarMarubeni" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <ul class="navbar-nav ml-auto">
+                <div class="float-lg-end">
+                    @{
+                        if (Session["SesionActiva"] != null)
+                        {
+                            if (@HttpContext.Current.Request.Cookies["Entrar"].Value == "1")
+                            {
+                                <div class="card" style="width:300px;">
+                                    <div class="card-header" style="height:25px; padding-top:2px; font-size: 14px;">
+                                        Datos de Conexión
+                                        <div class="float-end">
+                                            <a href="~/Login/close"><i class="fas fa-lg fa-sign-out-alt" style="color:red;"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="card-body" style="padding-top: 1px; padding-bottom: 1px;">
+                                        <div class="row" style="height:25px; font-size: 14px;">
+                                            <div class="col-12">
+                                                @HttpContext.Current.Request.Cookies["Usuario"].Value
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                </div>
+
+            </ul>
+        </nav>
+        @{
+            if (Session["SesionActiva"] != null)
+            {
+                if (HttpContext.Current.Request.Cookies["Rol"].Value == "1")
+                {
+               
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e21212;">
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav">
+                                <li><a href="~/Usuario/Index" class="nav-link">Usuario</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                }
+            }
+        }
+
+        <div class="maru_menu_footer">
+            &nbsp;
+        </div>
+    </header>
+    <content>
+        <div class="container-fluid" style="padding-bottom: 100px; padding-top:10px;">
+            @RenderBody()
+        </div>
+    </content>
+
+    <footer>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12 col-md-3">
+                </div>
+                <div class="col-sm-12 col-md-9">
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script type="text/javascript">
+        var BASE_PATH = '@Url.Content("~/")';
+    </script>
+</body>
+</html>
+
+

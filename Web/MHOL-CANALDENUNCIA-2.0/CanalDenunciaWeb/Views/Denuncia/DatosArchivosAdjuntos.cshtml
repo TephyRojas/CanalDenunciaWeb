@@ -1,0 +1,116 @@
+﻿@model List<string>
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="~/denuncia/Cancelar">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Denuncia</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" href="~/denuncia/DatosInvolucrados?idDenuncia=@ViewBag.IdDenuncia">Involucrados</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active">Documentos Adjuntos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="~/denuncia/datosDetalles?idDenuncia=@ViewBag.IdDenuncia">Detalle</a>
+            </li>
+            @if (ViewBag.VerEstado == 1)
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="~/denuncia/datosEstado?idDenuncia=@ViewBag.IdDenuncia">Estado</a>
+                </li>
+            }
+           
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+       
+        <div class="card">
+            @using (Html.BeginForm("GuardarArchivosAdjuntos", "Denuncia", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+            <div class="card-body">
+
+                <div class="mb-3">
+                    @Html.TextBox("file", "", new { @class = "form-control", @type = "file", @accept = ".doc,.docx, .pdf, .xls,.xlsx, .ppt, .pptx, .jpeg" }) <br />
+                </div>
+                @if (ViewBag.Cantidad < 5)
+                {
+                    if (ViewBag.Modificar == 0)
+                    {
+                        <div class="float-end">
+                            <input type="submit" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="bottom" title="Guardar" value="Guardar Archivo" />
+
+                        </div>
+                    }
+                }
+                @Html.AntiForgeryToken()
+            </div>
+            }
+            <div class="card-body">
+                <div class="card">
+                    <div class="card-header">Documentos Adjuntos Peso (@ViewBag.Peso /20 MB)</div>
+
+                    <div class="card-body maru_card_sinBorde">
+                        <table id="tblResultado" class="table table-bordered table-condensed table-hover tabla_condensada">
+                            <thead>
+                                <tr>
+                                    <th>Nombre </th>
+                                    <th style="width:100px; text-align:center;">Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (string item in Model)
+                                {
+                                    <tr>
+                                        <td>@item</td>
+                                        <td style="text-align:center;">
+                                            <a id="btnDescargar" name="btnDescargar" class="btnGrilla" href="#" onclick="Descargar('@item');" data-toggle="tooltip" data-placement="top" title="Descargar"><i class="fas fa-lg fa-download" style="color:green"></i></a>
+                                            @if (ViewBag.Modificar == 0)
+                                            {
+                                            <a id="btnEliminar" name="btnEliminar" class="btnGrilla" href="#" onclick="Eliminar('@item');" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-lg fa-trash"></i></a>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <input type="hidden" id="IdDenuncia" name="IdDenuncia" value="@ViewBag.IdDenuncia" />
+                
+            </div>
+            <div class="card-footer">
+                <a href="~/denuncia/Cancelar" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="bottom" title="Cancelar Ingreso"><i class="fas fa-ban"></i>&nbsp;Cancelar</a>
+                @if (ViewBag.Modificar == 0)
+                {
+                    <div class="float-end">
+                        <a id="btnContinuar" name="btnContinuar" href="~/denuncia/datosdetalles?idDenuncia=@ViewBag.IdDenuncia" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="bottom" title="Continuar"><i class="fas fa-chevron-circle-right"></i>&nbsp;Continuar</a>
+                    </div>
+                }
+            </div>
+        </div>
+        
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-3.5.1.js"></script>
+    <script src="~/Scripts/umd/popper.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Assets/DataTables/datatables.js"></script>
+    <script src="~/Assets/Datetimepicker/js/moment.min.js"></script>
+    <script src="~/Assets/Datetimepicker/js/daterangepicker.js"></script>
+    <script src="~/Scripts/sweetalert2.all.min.js"></script>
+    <script src="~/Scripts/page/datosAdjuntos.js"></script>
+    <script>
+       
+    </script>

@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3389DDAA-4FB3-4FFC-BA8E-AA2EC40347B2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CanalDenunciaServicio.Data</RootNamespace>
+    <AssemblyName>CanalDenunciaServicio.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\CanalDenunciaServicio\packages\Dapper.2.0.123\lib\net461\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="Package\CorreoPkg\CorreoOutputDto.cs" />
+    <Compile Include="Package\CorreoPkg\CorreoService.cs" />
+    <Compile Include="Package\DenunciaComentarioPkg\DenunciaComentarioInputDto.cs" />
+    <Compile Include="Package\DenunciaComentarioPkg\DenunciaComentarioOutputDto.cs" />
+    <Compile Include="Package\DenunciaComentarioPkg\DenunciaComentarioService.cs" />
+    <Compile Include="Package\DenunciaCorreoAnonimoPkg\DenunciaCorreoAnonimoInputDto.cs" />
+    <Compile Include="Package\DenunciaCorreoAnonimoPkg\DenunciaCorreoAnonimoOutputDto.cs" />
+    <Compile Include="Package\DenunciaCorreoAnonimoPkg\DenunciaCorreoAnonimoService.cs" />
+    <Compile Include="Package\DenunciaDocumentoHistoricoPkg\DenunciaDocumentoHistoricoInputDto.cs" />
+    <Compile Include="Package\DenunciaDocumentoHistoricoPkg\DenunciaDocumentoHistoricoService.cs" />
+    <Compile Include="Package\DenunciaDocumento\DenunciaDocumentoInputDto.cs" />
+    <Compile Include="Package\DenunciaDocumento\DenunciaDocumentoOutputDto.cs" />
+    <Compile Include="Package\DenunciaDocumento\DenunciaDocumentoService.cs" />
+    <Compile Include="Package\DenunciaHistoricoPkg\DenunciaHistoricoInputDto.cs" />
+    <Compile Include="Package\DenunciaHistoricoPkg\DenunciaHistoricoService.cs" />
+    <Compile Include="Package\DenunciaInvolucradoHistoricoPkg\DenunciaInvolucradoHistoricoInputDto.cs" />
+    <Compile Include="Package\DenunciaInvolucradoHistoricoPkg\DenunciaInvolucradoHistoricoService.cs" />
+    <Compile Include="Package\DenunciaInvolucradoPkg\DenunciaInvolucradoInputDto.cs" />
+    <Compile Include="Package\DenunciaInvolucradoPkg\DenunciaInvolucradoListOutputDto.cs" />
+    <Compile Include="Package\DenunciaInvolucradoPkg\DenunciaInvolucradoOutputDto.cs" />
+    <Compile Include="Package\DenunciaInvolucradoPkg\DenunciaInvolucradoService.cs" />
+    <Compile Include="Package\DenunciaOficialCumplimientoPkg\DenunciaOficialCumplimientoInputDto.cs" />
+    <Compile Include="Package\DenunciaOficialCumplimientoPkg\DenunciaOficialCumpliminetoService.cs" />
+    <Compile Include="Package\DenunciaPkg\DenunciaDetalleDto.cs" />
+    <Compile Include="Package\DenunciaPkg\DenunciaEstadoInputDto.cs" />
+    <Compile Include="Package\DenunciaPkg\DenunciaIdOutputDto.cs" />
+    <Compile Include="Package\DenunciaPkg\DenunciaInputDto.cs" />
+    <Compile Include="Package\DenunciaPkg\DenunciaReporteListOutputDto.cs" />
+    <Compile Include="Package\DenunciaPkg\DenunciaListOutputDto.cs" />
+    <Compile Include="Package\DenunciaPkg\DenunciaOutputDto.cs" />
+    <Compile Include="Package\DenunciaPkg\DenunciaService.cs" />
+    <Compile Include="Package\DepartamentoPkg\DepartamentoComboboxOutputDto.cs" />
+    <Compile Include="Package\DepartamentoPkg\DepartamentoService.cs" />
+    <Compile Include="Package\DepartamentoSedePkg\DepartamentoSedeComboboxOutputDto.cs" />
+    <Compile Include="Package\DepartamentoSedePkg\DepartamentoSedeService.cs" />
+    <Compile Include="Package\EstadoDenunciaPkg\EstadoDenunciaComboboxOutputDto.cs" />
+    <Compile Include="Package\EstadoDenunciaPkg\EstadoDenunciaService.cs" />
+    <Compile Include="Package\ModificacionPasswordPkg\ModificacionPasswordInputDto.cs" />
+    <Compile Include="Package\ModificacionPasswordPkg\ModificacionPasswordOutputDto.cs" />
+    <Compile Include="Package\ModificacionPasswordPkg\ModificacionPasswordService.cs" />
+    <Compile Include="Package\SedePkg\SedeComboboxOutputDto.cs" />
+    <Compile Include="Package\SedePkg\SedeOutputDto.cs" />
+    <Compile Include="Package\SedePkg\SedeService.cs" />
+    <Compile Include="Package\TipoDelitoPkg\TipoDelitoComboboxOutputDto.cs" />
+    <Compile Include="Package\TipoDelitoPkg\TipoDelitoNombreOutputDto.cs" />
+    <Compile Include="Package\TipoDelitoPkg\TipoDelitoDescripcionOutputDto.cs" />
+    <Compile Include="Package\TipoDelitoPkg\TipoDelitoService.cs" />
+    <Compile Include="Package\UsuarioPkg\UsuarioBloqueoPassowordInputDto.cs" />
+    <Compile Include="Package\UsuarioPkg\RecuperaContrasenaInputDto.cs" />
+    <Compile Include="Package\UsuarioPkg\RecuperaContrasenaOutputDto.cs" />
+    <Compile Include="Package\UsuarioPkg\UsuarioContrasenaTemporalInputDto.cs" />
+    <Compile Include="Package\UsuarioPkg\UsuarioDatosOutputDto.cs" />
+    <Compile Include="Package\UsuarioPkg\UsuarioDatosPersonalesInputDto.cs" />
+    <Compile Include="Package\UsuarioPkg\UsuarioEmailOutputDto.cs" />
+    <Compile Include="Package\UsuarioPkg\UsuarioInputDto.cs" />
+    <Compile Include="Package\UsuarioPkg\UsuarioLoginInputDto.cs" />
+    <Compile Include="Package\UsuarioPkg\UsuarioLoginOutputDto.cs" />
+    <Compile Include="Package\UsuarioPkg\UsuarioOutputDto.cs" />
+    <Compile Include="Package\UsuarioPkg\UsuarioService.cs" />
+    <Compile Include="Package\UsuarioRolPkg\RolComboboxOutputDto.cs" />
+    <Compile Include="Package\UsuarioRolPkg\UsuarioRolListDto.cs" />
+    <Compile Include="Package\UsuarioRolPkg\UsuarioRolService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

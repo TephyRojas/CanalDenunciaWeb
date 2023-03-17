@@ -1,0 +1,96 @@
+﻿<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Denuncia</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" href="~/denuncia/DatosInvolucrados?idDenuncia=@ViewBag.IdDenuncia">Involucrados</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active">Documentos Adjuntos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="~/denuncia/datosDetalles?idDenuncia=@ViewBag.IdDenuncia">Detalle</a>
+            </li>
+            @if (ViewBag.Perfil == ViewBag.RolOficial)
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="~/denuncia/datosEstado?idDenuncia=@ViewBag.IdDenuncia">Estado</a>
+                </li>
+            }
+           
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        @using (Html.BeginForm("GuardarAdjuntos", "Denuncia", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="card">
+                <div class="card-header text-white maru_card_info">
+                    Documentos adjuntos
+                </div>
+                <div class="card-body">
+
+                    <div class="mb-3">
+                        @Html.TextBox("file", "", new { @class = "form-control", @type = "file" }) <br />
+                    </div>
+                    <div class="mb-3">
+                        @Html.TextBox("file1", "", new { type = "file", @class = "form-control" }) <br />
+                    </div>
+                    <div class="mb-3">
+                        @Html.TextBox("file2", "", new { type = "file", @class = "form-control" }) <br />
+                    </div>
+                    <div class="mb-3">
+                        @Html.TextBox("file3", "", new { type = "file", @class = "form-control" }) <br />
+                    </div>
+                    <div class="mb-3">
+                        @Html.TextBox("file4", "", new { type = "file", @class = "form-control" }) <br />
+                    </div>
+                    <div class="float-end">
+                        <input type="submit" value="Upload" class="btn btn-primary btn-sm" title="Cargar Archivos" />
+                    </div>
+
+                    @*<div>
+                        <input type="submit" value="Upload" />
+                    </div>*@
+
+                    <input type="hidden" id="IdDenuncia" name="IdDenuncia" value="@ViewBag.IdDenuncia" />
+
+                    
+                </div>
+                <div class="card-footer">
+                    <a href="~/denuncia/Cancelar" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="bottom" title="Cancelar Ingreso"><i class="fas fa-ban"></i>&nbsp;Cancelar</a>
+                    @if (ViewBag.Modificar == 0)
+                    {
+                        <div class="float-end">
+                            <input type="submit" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="bottom" title="Continuar" />
+                            @*<a id="btnContinuar" name="btnContinuar" href="#" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="bottom" title="Continuar"><i class="fas fa-chevron-circle-right"></i>&nbsp;Continuar</a>*@
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-3.5.1.js"></script>
+    <script src="~/Scripts/umd/popper.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Assets/DataTables/datatables.js"></script>
+    <script src="~/Assets/Datetimepicker/js/moment.min.js"></script>
+    <script src="~/Assets/Datetimepicker/js/daterangepicker.js"></script>
+    <script src="~/Scripts/sweetalert2.all.min.js"></script>
+    <script src="~/Scripts/page/datosAdjuntos.js"></script>
+    <script>
+       
+    </script>

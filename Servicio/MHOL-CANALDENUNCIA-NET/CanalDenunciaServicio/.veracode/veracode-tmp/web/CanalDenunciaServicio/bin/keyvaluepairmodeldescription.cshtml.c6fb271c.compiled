@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<preserve resultType="2" virtualPath="/Areas/HelpPage/Views/Help/DisplayTemplates/KeyValuePairModelDescription.cshtml" hash="ffffffffb916ca42" filehash="2922d3f2ec20" flags="110000" assembly="App_Web_keyvaluepairmodeldescription.cshtml.c6fb271c" type="ASP._Page_Areas_HelpPage_Views_Help_DisplayTemplates_KeyValuePairModelDescription_cshtml">
+    <filedeps>
+        <filedep name="/Areas/HelpPage/Views/Help/DisplayTemplates/KeyValuePairModelDescription.cshtml" />
+    </filedeps>
+</preserve>
